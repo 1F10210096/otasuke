@@ -1,76 +1,45 @@
-import type { TaskModel } from 'commonTypesWithClient/models';
+import { SendOutlined } from '@ant-design/icons';
+import { AutoComplete, Button } from 'antd';
+import assert from 'assert';
 import { useAtom } from 'jotai';
-import type { ChangeEvent, FormEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
-import { apiClient } from 'src/utils/apiClient';
-import { returnNull } from 'src/utils/returnNull';
+import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
-import styles from './index.module.css';
 //a
 const Home = () => {
   const [user] = useAtom(userAtom);
-  const [tasks, setTasks] = useState<TaskModel[]>();
-  const [label, setLabel] = useState('');
-  const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
-    setLabel(e.target.value);
-  };
-  const fetchTasks = async () => {
-    const tasks = await apiClient.tasks.$get().catch(returnNull);
+  const [msg, setMsg] = useState('');
 
-    if (tasks !== null) setTasks(tasks);
-  };
-  const createTask = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!label) return;
-
-    await apiClient.tasks.post({ body: { label } });
-    setLabel('');
-    await fetchTasks();
-  };
-  const toggleDone = async (task: TaskModel) => {
-    await apiClient.tasks._taskId(task.id).patch({ body: { done: !task.done } });
-    await fetchTasks();
-  };
-  const deleteTask = async (task: TaskModel) => {
-    await apiClient.tasks._taskId(task.id).delete();
-    await fetchTasks();
+  const sendMsg = useSendMsg();
+  //メッセージ送信
+  const sendMsgs = async () => {
+    const SendMsg = await sendMsg(msg);
+    assert(SendMsg, 'コメントなし');
+    console.log(SendMsg);
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  const onMsg = (msg: string) => {
+    setMsg(msg);
+  };
 
-  if (!tasks || !user) return <Loading visible />;
+  if (!user) return <Loading visible />;
 
   return (
     <>
       <BasicHeader user={user} />
-      <div className={styles.title} style={{ marginTop: '160px' }}>
-        Welcome to frourio!
-      </div>
-
-      <form style={{ textAlign: 'center', marginTop: '80px' }} onSubmit={createTask}>
-        <input value={label} type="text" onChange={inputLabel} />
-        <input type="submit" value="ADD" />
-      </form>
-      <ul className={styles.tasks}>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <label>
-              <input type="checkbox" checked={task.done} onChange={() => toggleDone(task)} />
-              <span>{task.label}</span>
-            </label>
-            <input
-              type="button"
-              value="DELETE"
-              className={styles.deleteBtn}
-              onClick={() => deleteTask(task)}
-            />
-          </li>
-        ))}
-      </ul>
+      <AutoComplete
+        style={{ position: 'fixed', width: 800, height: 600, top: 750, right: 330 }}
+        onSearch={onMsg}
+        placeholder="input her"
+      />
+      <Button
+        icon={<SendOutlined />}
+        style={{ position: 'fixed', top: 750, right: 300 }}
+        type="primary"
+        onClick={() => sendMsgs()}
+      />
     </>
   );
 };

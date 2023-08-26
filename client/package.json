@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@aspida/axios": "^1.13.3",
+    "antd": "^5.8.4",
     "api": "file:../server/api",
     "axios": "^1.4.0",
     "commonTypesWithClient": "file:../server/commonTypesWithClient",
