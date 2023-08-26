@@ -13,3 +13,7 @@ export type TaskModel = {
   done: boolean;
   created: number;
 };
+
+export type MessageModel = {
+  msg: string;
+};
