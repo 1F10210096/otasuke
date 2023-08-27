@@ -17,3 +17,8 @@ export type TaskModel = {
 export type MessageModel = {
   msg: string;
 };
+
+export type RoomModel = {
+  roomId: string;
+  created: number;
+};
