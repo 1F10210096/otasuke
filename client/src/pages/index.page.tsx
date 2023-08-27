@@ -15,16 +15,19 @@ import {
 import { useCallback, useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
-import { apiClient } from 'src/utils/apiClient';
 //a
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [msg, setMsg] = useState('');
+  const [myId, setmyId] = useState<string>('');
 
   const createUserdata = useCallback(async () => {
     console.log('a');
+    if (!user) return;
+    setmyId(user.id);
     if (user === null) {
       console.log('a');
       await apiClient.create.$post();
@@ -33,12 +36,11 @@ const Home = () => {
         console.log(user);
       } else {
         const userId = user.id;
-        const userroom = await apiClient.usercheck.$post({ body: { userId } });
-        console.log(userroom);
+        // const userroom = await apiClient.usercheck.$post({ body: { userId } });
+        // console.log(userroom);
       }
     }
   }, [user]);
-  
 
   const sendMsg = useSendMsg();
   //メッセージ送信

@@ -1,7 +1,7 @@
 import type { RoomModel } from '$/commonTypesWithClient/models';
 import { roomRepository } from '$/repositry/roomRepositry';
 export const roomUsecase = {
-  create: async (userId: string) => {
+  create: async () => {
     const newRoom: RoomModel = {
       roomId: '',
       created: Date.now(),
