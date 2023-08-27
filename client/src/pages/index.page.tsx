@@ -36,7 +36,7 @@ const Home = () => {
         console.log(user);
       } else {
         const userId = user.id;
-        // const userroom = await apiClient.usercheck.$post({ body: { userId } });
+        const userroom = await apiClient.userCheck.$post({ body: { userId } });
         // console.log(userroom);
       }
     }
