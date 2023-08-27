@@ -25,7 +25,7 @@ export const msgUsecase = {
           {
             // モデルへの指示をベイマックスに変更
             role: 'system',
-            content: 'ベイマックスのような返答をして',
+            content: 'ベイマックスになって返答をして',
           },
           ...messages,
         ],
