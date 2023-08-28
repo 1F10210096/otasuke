@@ -28,7 +28,7 @@ const Home = () => {
   const sendMsg = useSendMsg();
   //メッセージ送信
   const sendMsgs = async () => {
-    const SendMsg = await sendMsg(msg,roomId);
+    const SendMsg = await sendMsg(msg, roomId);
     assert(SendMsg, 'コメントなし');
     console.log(SendMsg);
   };
@@ -57,7 +57,7 @@ const Home = () => {
         type="primary"
         onClick={() => sendMsgs()}
       />
-            <Button
+      <Button
         icon={<SendOutlined />}
         style={{ position: 'fixed', top: '20%', right: '80%' }}
         type="primary"

@@ -3,7 +3,6 @@ import { msgRepository } from '$/repository/msgRepositry';
 import { randomUUID } from 'crypto';
 import { ConversationChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
-import { ConsoleCallbackHandler } from 'langchain/dist/callbacks';
 import type { ChainValues } from 'langchain/dist/schema';
 import type { BaseMemory } from 'langchain/memory';
 import { BufferMemory } from 'langchain/memory';
@@ -39,12 +38,11 @@ export const msgUsecase = async (msg: string, roomId: string): Promise<ChainValu
   });
   const res = response.response;
   senderId = 2;
-  console.log(res)
-  try{
-  await msgUsecaseCreate.create(res, senderId);
-  } catch (error)
-  {
-    console.log(error)
+  console.log(res);
+  try {
+    await msgUsecaseCreate.create(res, senderId);
+  } catch (error) {
+    console.log(error);
   }
   console.log(response);
 
