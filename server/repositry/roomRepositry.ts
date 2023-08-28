@@ -18,4 +18,7 @@ export const roomRepository = {
       },
     });
   },
+  findUser: async (userId: string) => {
+    return userId;
+  },
 };
