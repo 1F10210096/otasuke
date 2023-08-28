@@ -3,7 +3,7 @@ import { AutoComplete, Button } from 'antd';
 import assert from 'assert';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
@@ -18,12 +18,12 @@ const Home = () => {
   const [roomId, setRoomId] = useState('');
   const [myId, setmyId] = useState<string>('');
 
-  const createRoom = useCallback(async () => {
-    console.log('a');
+  const createRoom = async () => {
     const room = await apiClient.room.$post({ body: { roomId } });
-    console.log(room);
+    console.log(roomId);
     setRoomId(room.roomId);
-  }, [roomId]);
+    console.log(roomId);
+  };
 
   const sendMsg = useSendMsg();
   //メッセージ送信
@@ -37,9 +37,9 @@ const Home = () => {
     setMsg(msg);
   };
 
-  useEffect(() => {
-    createRoom();
-  }, [createRoom]);
+  // useEffect(() => {
+  //   createRoom();
+  // }, [createRoom]);
 
   if (!user) return <Loading visible />;
 
@@ -54,6 +54,12 @@ const Home = () => {
       <Button
         icon={<SendOutlined />}
         style={{ position: 'fixed', top: '80%', right: '30%' }}
+        type="primary"
+        onClick={() => createRoom()}
+      />
+            <Button
+        icon={<SendOutlined />}
+        style={{ position: 'fixed', top: '20%', right: '80%' }}
         type="primary"
         onClick={() => createRoom()}
       />
