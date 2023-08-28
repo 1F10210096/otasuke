@@ -3,7 +3,6 @@ import { msgRepository } from '$/repository/msgRepositry';
 import { randomUUID } from 'crypto';
 import { ConversationChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
-import type { ChainValues } from 'langchain/dist/schema';
 import type { BaseMemory } from 'langchain/memory';
 import { BufferMemory } from 'langchain/memory';
 import {
