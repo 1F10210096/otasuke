@@ -15,7 +15,11 @@ export type TaskModel = {
 };
 
 export type MessageModel = {
-  msg: string;
+  id: string;
+  roomId: string;
+  sender_Id: number;
+  content: string;
+  sent_at: number;
 };
 
 export type RoomModel = {
