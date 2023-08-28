@@ -4,6 +4,7 @@ import assert from 'assert';
 import { useAtom } from 'jotai';
 import { ConversationChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
+import { OpenAI } from 'langchain/llms/openai';
 import { BufferMemory } from 'langchain/memory';
 import {
   ChatPromptTemplate,
@@ -11,17 +12,35 @@ import {
   MessagesPlaceholder,
   SystemMessagePromptTemplate,
 } from 'langchain/prompts';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
-import { OpenAI } from "langchain/llms/openai";
 //a
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [msg, setMsg] = useState('');
-  
+  const [myId, setmyId] = useState<string>('');
+
+  const createUserdata = useCallback(async () => {
+    console.log('a');
+    if (!user) return;
+    setmyId(user.id);
+    if (user === null) {
+      console.log('a');
+      await apiClient.create.$post();
+    } else {
+      if (user === null) {
+        console.log(user);
+      } else {
+        const userId = user.id;
+        const userroom = await apiClient.userCheck.$post({ body: { userId } });
+        // console.log(userroom);
+      }
+    }
+  }, [user]);
 
   const sendMsg = useSendMsg();
   //メッセージ送信
@@ -36,7 +55,7 @@ const Home = () => {
   };
 
   const llm = new OpenAI({
-    openAIApiKey: "YOUR_KEY_HERE",
+    openAIApiKey: 'YOUR_KEY_HERE',
   });
 
   const run = async () => {

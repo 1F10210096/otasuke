@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
 import { useAtom } from 'jotai';
+import { useCallback } from 'react';
 import { userAtom } from 'src/atoms/user';
 import { apiClient } from './apiClient';
 

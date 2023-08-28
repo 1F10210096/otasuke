@@ -13,3 +13,8 @@ model Task {
   done      Boolean
   createdAt DateTime
 }
+
+model Room {
+  roomId    String   @id
+  createdAt DateTime
+}
