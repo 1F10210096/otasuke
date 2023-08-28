@@ -3,7 +3,7 @@ import { AutoComplete, Button } from 'antd';
 import assert from 'assert';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
@@ -18,11 +18,12 @@ const Home = () => {
   const [roomId, setRoomId] = useState('');
   const [myId, setmyId] = useState<string>('');
 
-  const createRoom = async () => {
+  const createRoom = useCallback(async () => {
     console.log('a');
     const room = await apiClient.room.$post({ body: { roomId } });
-    console.log();
-  };
+    console.log(room);
+    setRoomId(room.roomId);
+  }, [roomId]);
 
   const sendMsg = useSendMsg();
   //メッセージ送信
@@ -36,9 +37,9 @@ const Home = () => {
     setMsg(msg);
   };
 
-  // useEffect(() => {
-  //   createRoom();
-  // }, [createRoom]);
+  useEffect(() => {
+    createRoom();
+  }, [createRoom]);
 
   if (!user) return <Loading visible />;
 

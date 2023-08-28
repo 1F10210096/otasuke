@@ -1,4 +1,4 @@
-import type { RoomModel } from '$/commonTypesWithClient/models';
+import type { RoomModel } from '../../commonTypesWithClient/models';
 
 export type Methods = {
   post: {
