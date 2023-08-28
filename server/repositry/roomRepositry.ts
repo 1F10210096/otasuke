@@ -18,7 +18,9 @@ export const roomRepository = {
       },
     });
   },
-  findUser: async (userId: string) => {
-    return userId;
+  findRoom: async (roomId: string | undefined): Promise<RoomModel | undefined> => {
+    const roomlist = await prismaClient.room.findMany();
+    const room = roomlist.find((room) => room.roomId === roomId);
+    return room && toRoomModel(room);
   },
 };

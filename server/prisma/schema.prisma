@@ -18,3 +18,11 @@ model Room {
   roomId    String   @id
   createdAt DateTime
 }
+
+model SendMsg {
+  id     String @id
+  roomId String
+  sender_id Int
+  content   String
+  sent_at   DateTime
+}
