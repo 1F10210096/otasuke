@@ -100,7 +100,7 @@ const Home = () => {
     <>
       <BasicHeader user={user} />
       <AutoComplete
-        style={{ position: 'fixed', width: 800, height: 600, top: 750, right: 330 }}
+        style={{ position: 'fixed', width: 800, height: 600, top: 750, right: 130 }}
         onSearch={onMsg}
         placeholder="input her"
       />
