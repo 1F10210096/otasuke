@@ -4,12 +4,14 @@ import assert from 'assert';
 import type { MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
+import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
+import styles from './index.module.css';
 dotenv.config();
 //a
 
@@ -29,7 +31,7 @@ const Home = () => {
 
   const lookMsg = async () => {
     const msg = await apiClient.lookMsg.$post();
-    setMsgAsse(msg);
+    setMsgAsse(msg.reverse());
     console.log(msg);
   };
 
@@ -54,29 +56,42 @@ const Home = () => {
   return (
     <>
       <BasicHeader user={user} />
+      <img src={beimax.src} alt="Beimax" style={{ marginLeft: '35%' }} />
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          padding: '20px',
+          marginLeft: '75%',
+          marginBottom: '10%',
+          marginTop: '-40%',
+          alignItems: 'flex-end' // ここを追加
         }}
       >
-        {msgAsse.map((message) => (
+        <div className={styles.box14}>
           <div
-            key={message.id}
             style={{
-              backgroundColor: message.sender_Id === 1 ? '#ac0303' : '#49ea0f',
-              maxWidth: '80%',
-              borderRadius: '8px',
-              padding: '8px',
-              marginBottom: '10px',
-              alignSelf: message.sender_Id === 1 ? 'flex-start' : 'flex-end',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              padding: '20px',
             }}
           >
-            {message.content}
+            {msgAsse.map((message) => (
+              <div
+                key={message.id}
+                style={{
+                  backgroundColor: message.sender_Id === 1 ? '#ffffff' : '#ffffff',
+                  maxWidth: '80%',
+                  borderRadius: '8px',
+                  padding: '8px',
+                  marginBottom: '10px',
+                  alignSelf: message.sender_Id === 1 ? 'flex-start' : 'flex-end',
+                }}
+              >
+                {message.content}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
       <AutoComplete
         style={{ width: '40%', height: '80%', position: 'fixed', top: '80%', right: '30%' }}
@@ -90,11 +105,12 @@ const Home = () => {
         onClick={() => sendMsgs()}
       />
       <Button
-        icon={<SendOutlined />}
-        style={{ position: 'fixed', top: '20%', right: '80%' }}
+        style={{ position: 'fixed', top: '10%', right: '95%' }}
         type="primary"
         onClick={() => lookMsg()}
-      />
+      >
+        check
+      </Button>
     </>
   );
 };
