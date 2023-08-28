@@ -24,4 +24,11 @@ export const msgRepository = {
       },
     });
   },
+  findMsg: async (): Promise<MessageModel[]> => {
+    // console.log(roomId);
+    const roomlist = await prismaClient.sendMsg.findMany({
+      orderBy: { sent_at: 'desc' },
+    });
+    return roomlist.map(toMessageModel);
+  },
 };

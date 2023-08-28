@@ -1,8 +1,8 @@
-import type { ChainValues } from 'langchain/dist/schema';
+import type { MessageModel } from '$/commonTypesWithClient/models';
 
 export type Methods = {
   post: {
     reqBody: { msg: string; roomId: string };
-    resBody: ChainValues;
+    resBody: MessageModel[];
   };
 };

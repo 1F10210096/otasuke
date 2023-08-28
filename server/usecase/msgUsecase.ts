@@ -14,7 +14,7 @@ import {
 } from 'langchain/prompts';
 
 const memory = new BufferMemory({ returnMessages: true, memoryKey: 'history' });
-export const msgUsecase = async (msg: string, roomId: string): Promise<ChainValues> => {
+export const msgUsecase = async (msg: string, roomId: string): Promise<MessageModel[]> => {
   let senderId = 1;
   await msgUsecaseCreate.create(msg, senderId);
   const chat = new ChatOpenAI({});
@@ -39,14 +39,10 @@ export const msgUsecase = async (msg: string, roomId: string): Promise<ChainValu
   const res = response.response;
   senderId = 2;
   console.log(res);
-  try {
-    await msgUsecaseCreate.create(res, senderId);
-  } catch (error) {
-    console.log(error);
-  }
+  await msgUsecaseCreate.create(res, senderId);
   console.log(response);
-
-  return response;
+  const msgAsse = await msgRepository.findMsg();
+  return msgAsse;
 };
 
 export const msgUsecaseCreate = {

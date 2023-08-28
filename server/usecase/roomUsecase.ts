@@ -1,5 +1,5 @@
 import type { RoomModel } from '$/commonTypesWithClient/models';
-import { roomRepository } from '$/repositry/roomRepositry';
+import { roomRepository } from '$/repository/roomRepositry';
 import { randomUUID } from 'crypto';
 export const roomUsecase = {
   create: async () => {
