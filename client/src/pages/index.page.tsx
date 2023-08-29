@@ -1,9 +1,10 @@
 import { SendOutlined } from '@ant-design/icons';
-import { AutoComplete, Button } from 'antd';
+import { AutoComplete, Button, message } from 'antd';
 import assert from 'assert';
 import type { MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
+import frame from 'public/5389.png';
 import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
@@ -33,6 +34,19 @@ const Home = () => {
     const msg = await apiClient.lookMsg.$post();
     setMsgAsse(msg.reverse());
     console.log(msg);
+    voice(msgAsse);
+  };
+
+  const voice= (messages: MessageModel[]) => {
+    const sortedMessages = messages.sort((a, b) => b.sent_at - a.sent_at);
+    const latestMessage = sortedMessages.find((message) => message.sender_Id === 2);
+    
+    if (latestMessage) {
+      const uttr = new SpeechSynthesisUtterance(latestMessage.content);
+      window.speechSynthesis.speak(uttr);
+    } else {
+      console.log("最新の sender_Id が 2 のメッセージが見つかりませんでした。");
+    }
   };
 
   const sendMsg = useSendMsg();
@@ -56,14 +70,27 @@ const Home = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <img src={beimax.src} alt="Beimax" style={{ marginLeft: '35%' }} />
+      <div style={{ position: 'relative' }}>
+        <img
+          src={frame.src}
+          alt="frame"
+          style={{ position: 'fixed', marginLeft: '15%', width: '50%', height: 'auto' }}
+        />
+        <div style={{ position: 'fixed', width: '20%', height: '14%', overflow: 'hidden' }}>
+          <img
+            src={beimax.src}
+            alt="Beimax"
+            style={{ position: 'fixed', left: '20%', top: '21%', width: '40%', height: 'auto' }}
+          />
+        </div>
+      </div>
       <div
         style={{
           display: 'flex',
           marginLeft: '75%',
-          marginBottom: '10%',
-          marginTop: '-40%',
-          alignItems: 'flex-end' // ここを追加
+          marginBottom: '100%',
+
+          alignItems: 'flex-end',
         }}
       >
         <div className={styles.box14}>
@@ -72,7 +99,7 @@ const Home = () => {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              padding: '20px',
+              padding: '10px',
             }}
           >
             {msgAsse.map((message) => (
@@ -94,18 +121,18 @@ const Home = () => {
         </div>
       </div>
       <AutoComplete
-        style={{ width: '40%', height: '80%', position: 'fixed', top: '80%', right: '30%' }}
+        style={{ width: '40%', height: '80%', position: 'fixed', top: '95%', right: '30%' }}
         onSearch={onMsg}
         placeholder="input her"
       />
       <Button
         icon={<SendOutlined />}
-        style={{ position: 'fixed', top: '80%', right: '30%' }}
+        style={{ position: 'fixed', top: '95%', right: '30%' }}
         type="primary"
         onClick={() => sendMsgs()}
       />
       <Button
-        style={{ position: 'fixed', top: '10%', right: '95%' }}
+        style={{ position: 'fixed', top: '88%', right: '3%' ,width: '20%',height: '10%'}}
         type="primary"
         onClick={() => lookMsg()}
       >
