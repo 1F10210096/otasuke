@@ -74,7 +74,7 @@ const Home = () => {
         alt="frame"
         style={{ position: 'fixed', width: '100%', height: 'auto' }}
       />
-      <div className={styles.ribbon2}>
+      <div className={styles.ribbon3}>
         <h3>Baymax</h3>
       </div>
       <div style={{ position: 'relative' }}>
