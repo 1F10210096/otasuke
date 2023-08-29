@@ -1,14 +1,14 @@
 import { SendOutlined } from '@ant-design/icons';
-import { AutoComplete, Button, message } from 'antd';
+import { AutoComplete, Button } from 'antd';
 import assert from 'assert';
 import type { MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
 import frame from 'public/5389.png';
+import background from 'public/kawaiisora21-1536x864.png';
 import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
@@ -37,15 +37,15 @@ const Home = () => {
     voice(msgAsse);
   };
 
-  const voice= (messages: MessageModel[]) => {
+  const voice = (messages: MessageModel[]) => {
     const sortedMessages = messages.sort((a, b) => b.sent_at - a.sent_at);
     const latestMessage = sortedMessages.find((message) => message.sender_Id === 2);
-    
+
     if (latestMessage) {
       const uttr = new SpeechSynthesisUtterance(latestMessage.content);
       window.speechSynthesis.speak(uttr);
     } else {
-      console.log("最新の sender_Id が 2 のメッセージが見つかりませんでした。");
+      console.log('最新の sender_Id が 2 のメッセージが見つかりませんでした。');
     }
   };
 
@@ -69,18 +69,31 @@ const Home = () => {
 
   return (
     <>
-      <BasicHeader user={user} />
+      <img
+        src={background.src}
+        alt="frame"
+        style={{ position: 'fixed', width: '100%', height: 'auto' }}
+      />
+      <div className={styles.ribbon2}>
+        <h3>Baymax</h3>
+      </div>
       <div style={{ position: 'relative' }}>
         <img
           src={frame.src}
           alt="frame"
-          style={{ position: 'fixed', marginLeft: '15%', width: '50%', height: 'auto' }}
+          style={{
+            position: 'fixed',
+            marginLeft: '17%',
+            marginTop: '3%',
+            width: '50%',
+            height: 'auto',
+          }}
         />
         <div style={{ position: 'fixed', width: '20%', height: '14%', overflow: 'hidden' }}>
           <img
             src={beimax.src}
             alt="Beimax"
-            style={{ position: 'fixed', left: '20%', top: '21%', width: '40%', height: 'auto' }}
+            style={{ position: 'fixed', left: '23%', top: '21%', width: '40%', height: 'auto' }}
           />
         </div>
       </div>
@@ -112,6 +125,7 @@ const Home = () => {
                   padding: '8px',
                   marginBottom: '10px',
                   alignSelf: message.sender_Id === 1 ? 'flex-start' : 'flex-end',
+                  zIndex: 1,
                 }}
               >
                 {message.content}
@@ -132,7 +146,7 @@ const Home = () => {
         onClick={() => sendMsgs()}
       />
       <Button
-        style={{ position: 'fixed', top: '88%', right: '3%' ,width: '20%',height: '10%'}}
+        style={{ position: 'fixed', top: '88%', right: '8%', width: '20%', height: '10%' }}
         type="primary"
         onClick={() => lookMsg()}
       >
