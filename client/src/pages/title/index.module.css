@@ -1,0 +1,122 @@
+.title {
+  font-size: 80px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tasks {
+  width: 300px;
+  padding: 0;
+  margin: 20px auto 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.tasks > li {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.deleteBtn {
+  float: right;
+}
+
+.roomIds {
+  margin-top: 40px;
+  margin-left: 100px;
+}
+.comment {
+  margin-left: 600px;
+  margin-top: -10px;
+}
+
+.form {
+  margin-top: 400px;
+}
+
+.myMessage {
+  text-align: left;
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+.otherMessage {
+  text-align: right;
+  margin-right: 100px;
+  margin-top: 10px;
+}
+
+.commentBubble {
+}
+.currentroomId {
+  position: relative;
+  left: 700px;
+}
+.roomContainer {
+}
+.commentContainer {
+}
+
+.username {
+  font-size: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.messageContent {
+  position: relative;
+}
+
+.toggleButton {
+  margin-left: 100px;
+  margin-top: 500px;
+}
+
+.crateButton {
+  margin-left: 150px;
+  margin-top: 10px;
+}
+
+.editForm {
+}
+
+.content {
+  margin-top: 10px;
+  font-size: 19px;
+}
+.haikei {
+  background: '#000';
+}
+
+.box1 {
+
+  padding: 15px;
+  width: 250px;
+  height: 70px;
+  margin-top: 25px;
+  margin-left:0px;
+  border-radius: 10px; /* 角を丸くする */
+  background-color: rgb(103, 106, 131);
+  position:'fixed'
+}
+.demo {
+  width: 200px;
+  min-width: 400px;
+}
+.aside {
+  overflow: auto;
+  height: 1200vh;
+  position: fixed;
+  left: 100;
+  top: 80px;
+  bottom: 0;
+  width: 000;
+  min-width: 0000;
+}
+
+.fuchidori {
+  color: #000;
+  text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+              -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+              0px 1px 0 #FFF,  0-1px 0 #FFF,
+              -1px 0 0 #FFF, 1px 0 0 #FFF;
+}
