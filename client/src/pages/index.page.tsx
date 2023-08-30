@@ -5,6 +5,7 @@ import type { MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
 import frame from 'public/5389.png';
+import background2 from 'public/beach01.png';
 import background from 'public/kawaiisora21-1536x864.png';
 import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
@@ -12,7 +13,6 @@ import { Loading } from 'src/components/Loading/Loading';
 import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
-import background2 from 'public/beach01.png';
 import styles from './index.module.css';
 dotenv.config();
 //a
@@ -89,6 +89,18 @@ const Home = () => {
             height: 'auto',
           }}
         />
+        <img
+          src={background2.src}
+          alt="frame"
+          style={{
+            position: 'fixed',
+            marginTop: '4%',
+            marginLeft: '19%',
+            width: '46%',
+            height: '69%',
+          }}
+        />
+
         <div style={{ position: 'fixed', width: '20%', height: '14%', overflow: 'hidden' }}>
           <img
             src={beimax.src}

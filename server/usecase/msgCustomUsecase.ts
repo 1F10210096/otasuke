@@ -1,6 +1,5 @@
 import type { MessageModel } from '$/commonTypesWithClient/models';
-import { msgRepository } from '$/repository/msgRepositry';
-import { randomUUID } from 'crypto';
+import { msgRepository } from '$/repository/msgRepositry'
 import { ConversationChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import type { BaseMemory } from 'langchain/memory';
@@ -13,9 +12,8 @@ import {
 } from 'langchain/prompts';
 
 const memory = new BufferMemory({ returnMessages: true, memoryKey: 'history' });
-export const msgUsecase = async (msg: string, roomId: string): Promise<MessageModel[]> => {
+export const msgCustomUsecase = async (msg: string, roomId: string): Promise<MessageModel[]> => {
   let senderId = 1;
-  await msgUsecaseCreate.create(msg, senderId);
   const chat = new ChatOpenAI({});
   const memory1: BaseMemory = memory;
   console.log(await memory.loadMemoryVariables({}));
@@ -38,24 +36,9 @@ export const msgUsecase = async (msg: string, roomId: string): Promise<MessageMo
   const res = response.response;
   senderId = 2;
   console.log(res);
-  await msgUsecaseCreate.create(res, senderId);
   console.log(response);
   const msgAsse = await msgRepository.findMsg();
   return msgAsse;
 };
 
 
-
-export const msgUsecaseCreate = {
-  create: async (msg: string, senderId: number) => {
-    const newMsg: MessageModel = {
-      id: randomUUID(),
-      roomId: '',
-      sender_Id: senderId,
-      content: msg,
-      sent_at: Date.now(),
-    };
-    await msgRepository.save(newMsg);
-    return newMsg;
-  },
-};
