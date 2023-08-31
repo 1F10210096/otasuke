@@ -25,4 +25,13 @@ export type MessageModel = {
 export type RoomModel = {
   roomId: string;
   created: number;
+  charaName:string;
+};
+
+export type MessageCustomModel = {
+  id: string;
+  roomId: string;
+  sender_Id: number;
+  content: string;
+  sent_at: number;
 };

@@ -1,7 +1,7 @@
 import { SendOutlined } from '@ant-design/icons';
 import { AutoComplete, Button } from 'antd';
 import assert from 'assert';
-import type { MessageModel } from 'commonTypesWithClient/models';
+import type { MessageCustomModel, MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
 import frame from 'public/5389.png';
@@ -19,6 +19,7 @@ dotenv.config();
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [msg, setMsg] = useState('');
+  const [charaName, setCharaName] = useState('');
   const [roomId, setRoomId] = useState('');
   const [myId, setmyId] = useState<string>('');
   const [msgAsse, setMsgAsse] = useState<MessageModel[]>([]);
@@ -31,13 +32,13 @@ const Home = () => {
   };
 
   const lookMsg = async () => {
-    const msg = await apiClient.lookMsg.$post();
+    const msg = await apiClient.lookCustomMsg.$post();
     setMsgAsse(msg.reverse());
     console.log(msg);
     voice(msgAsse);
   };
 
-  const voice = (messages: MessageModel[]) => {
+  const voice = (messages: MessageCustomModel[]) => {
     const sortedMessages = messages.sort((a, b) => b.sent_at - a.sent_at);
     const latestMessage = sortedMessages.find((message) => message.sender_Id === 2);
 
@@ -59,6 +60,19 @@ const Home = () => {
 
   const onMsg = (msg: string) => {
     setMsg(msg);
+  };
+
+
+  const sendCharaName = useSendCharaName();
+  //キャラ名送る
+  const sentCharaName = async () => {
+    const SendCharaName = await sendCharaName(charaName);
+    assert(SendCharaName, 'コメントなし');
+    console.log(SendCharaName);
+  };
+
+  const onCharaName = (name: string) => {
+    setCharaName(name);
   };
 
   // useEffect(() => {
@@ -132,6 +146,19 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <AutoComplete
+        style={{ width: '10%', height: '80%', position: 'fixed', top: '15%', right: '82%' }}
+        onSearch={onCharaName}
+        placeholder="キャラ名を入力してね"
+      />
+      <Button
+        icon={<SendOutlined />}
+        style={{ position: 'fixed', top: '15%', right: '82%' }}
+        type="primary"
+        onClick={() => sendCharaName()}
+      />
+
       <AutoComplete
         style={{ width: '40%', height: '80%', position: 'fixed', top: '95%', right: '30%' }}
         onSearch={onMsg}
