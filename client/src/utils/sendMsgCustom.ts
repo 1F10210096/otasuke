@@ -30,5 +30,5 @@ export function useCustomName() {
     [user]
   );
 
-  return sendMsgCustom;
+  return sendCustomName;
 }

@@ -13,7 +13,7 @@ import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from 'src/atoms/user';
 import styles from './index.module.css';
-import { useSendMsgCustom } from 'src/utils/sendMsgCustom';
+import { useCustomName, useSendMsgCustom } from 'src/utils/sendMsgCustom';
 dotenv.config();
 
 const Home = () => {
@@ -53,7 +53,7 @@ const Home = () => {
   const sendMsgCustom = useSendMsgCustom();
   //メッセージ送信
   const sendMsgsCustom = async () => {
-    const SendMsg = await sendMsgCustom(msg, roomId);
+    const SendMsg = await sendMsgCustom(charaName,msg, roomId);
     assert(SendMsg, 'コメントなし');
     console.log(SendMsg);
   };
@@ -63,10 +63,10 @@ const Home = () => {
   };
 
 
-  const sendCharaName = useSendCharaName();
+  const sendCustomName = useCustomName();
   //キャラ名送る
   const sentCharaName = async () => {
-    const SendCharaName = await sendCharaName(charaName);
+    const SendCharaName = await sendCustomName(charaName);
     assert(SendCharaName, 'コメントなし');
     console.log(SendCharaName);
   };
@@ -182,3 +182,7 @@ const Home = () => {
 };
 
 export default Home;
+function sendCustomName() {
+  throw new Error('Function not implemented.');
+}
+
