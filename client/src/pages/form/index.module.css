@@ -1,0 +1,119 @@
+.title {
+  font-size: 80px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tasks {
+  width: 300px;
+  padding: 0;
+  margin: 20px auto 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.tasks > li {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.deleteBtn {
+  float: right;
+}
+
+.box14 {
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  background: #d6ebff;
+  box-shadow: 0px 0px 0px 10px #d6ebff;
+  border: dashed 2px white;
+  position: relative;
+  z-index: 1;
+  right: 20%;
+}
+.box14 p {
+  margin: 0;
+  padding: 0;
+}
+.ribbon9 {
+  display: inline-block;
+  position: relative;
+  height: 45px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.ribbon9:before {
+  /*左側のリボン端*/
+  content: '';
+  position: absolute;
+  width: 10px;
+  bottom: -10px;
+  left: -35px;
+  z-index: -2;
+  border: 20px solid #56adf3;
+  border-left-color: transparent; /*山形に切り抜き*/
+}
+
+.ribbon9:after {
+  /*右側のリボン端*/
+  content: '';
+  position: absolute;
+  width: 10px;
+  bottom: -10px;
+  right: -35px;
+  z-index: -2;
+  border: 20px solid #56adf3;
+  border-right-color: transparent; /*山形に切り抜き*/
+}
+
+.ribbon9 h3 {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0 20px;
+  line-height: 45px;
+  font-size: 18px;
+  color: #fff;
+  background: #2196f3; /*真ん中の背景色*/
+}
+.ribbon9 h3:before {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0;
+  border: none;
+  border-bottom: solid 10px transparent;
+  border-right: solid 15px #397eb5; /*左の折り返し部分*/
+}
+.ribbon9 h3:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  right: 0;
+  border: none;
+  border-bottom: solid 10px transparent;
+  border-left: solid 15px #397eb5; /*右の折り返し部分*/
+}
+
+.box54{
+  margin: 2em auto;
+  padding:2em;/*内側余白*/
+  position: relative;
+  padding:1.5em !important;
+  z-index: 0;
+  background-color:#d6e0ea;/*背景色*/
+  }
+  
+  .box54:before{
+  position: absolute;
+  border: 2px dashed #fff;/*破線の太さ・色*/
+  content: '';
+  display: block;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin:5px;
+  z-index: -1;
+  border-radius:3px;
+  }
