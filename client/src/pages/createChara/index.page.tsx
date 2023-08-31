@@ -5,17 +5,16 @@ import type { MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
 import frame from 'public/5389.png';
-import background2 from 'public/beach01.png';
 import background from 'public/kawaiisora21-1536x864.png';
-import beimax from 'public/pngwing.com.png';
+// import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
-import { userAtom } from '../atoms/user';
+import { userAtom } from 'src/atoms/user';
 import styles from './index.module.css';
+import { useSendMsgCustom } from 'src/utils/sendMsgCustom';
 dotenv.config();
-//a
 
 const Home = () => {
   const [user] = useAtom(userAtom);
@@ -50,10 +49,10 @@ const Home = () => {
     }
   };
 
-  const sendMsg = useSendMsg();
+  const sendMsgCustom = useSendMsgCustom();
   //メッセージ送信
-  const sendMsgs = async () => {
-    const SendMsg = await sendMsg(msg, roomId);
+  const sendMsgsCustom = async () => {
+    const SendMsg = await sendMsgCustom(msg, roomId);
     assert(SendMsg, 'コメントなし');
     console.log(SendMsg);
   };
@@ -76,7 +75,7 @@ const Home = () => {
         style={{ position: 'fixed', width: '100%', height: 'auto' }}
       />
       <div className={styles.ribbon3}>
-        <h3>Baymax</h3>
+        <h3>Original Chara</h3>
       </div>
       <div style={{ position: 'relative' }}>
         <img
@@ -89,24 +88,12 @@ const Home = () => {
             height: 'auto',
           }}
         />
-        <img
-          src={background2.src}
-          alt="frame"
-          style={{
-            position: 'fixed',
-            marginTop: '4%',
-            marginLeft: '19%',
-            width: '46%',
-            height: '69%',
-          }}
-        />
-
         <div style={{ position: 'fixed', width: '20%', height: '14%', overflow: 'hidden' }}>
-          <img
+          {/* <img
             src={beimax.src}
             alt="Beimax"
             style={{ position: 'fixed', left: '23%', top: '21%', width: '40%', height: 'auto' }}
-          />
+          /> */}
         </div>
       </div>
       <div
@@ -154,7 +141,7 @@ const Home = () => {
         icon={<SendOutlined />}
         style={{ position: 'fixed', top: '95%', right: '30%' }}
         type="primary"
-        onClick={() => sendMsgs()}
+        onClick={() => sendMsgsCustom()}
       />
       <Button
         style={{ position: 'fixed', top: '88%', right: '8%', width: '20%', height: '10%' }}
