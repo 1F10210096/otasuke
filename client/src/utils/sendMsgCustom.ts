@@ -7,9 +7,9 @@ export function useSendMsgCustom() {
   const [user] = useAtom(userAtom);
 
   const sendMsgCustom = useCallback(
-    async (chara:string,msg: string, roomId: string) => {
+    async (chara: string, msg: string, roomId: string) => {
       if (!user) return;
-      const message = await apiClient.sendMsgCustom.post({ body: { chara,msg, roomId } });
+      const message = await apiClient.sendMsgCustom.post({ body: { chara, msg, roomId } });
       return message;
     },
     [user]

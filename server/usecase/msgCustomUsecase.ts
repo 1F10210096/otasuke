@@ -60,11 +60,11 @@ export const msgUsecaseCreate = {
 };
 
 export const charaNameUsecase = {
-  create: async (charaName:string) => {
+  create: async (charaName: string) => {
     const newRoom: RoomModel = {
       roomId: randomUUID(),
       created: Date.now(),
-      charaName
+      charaName,
     };
     await roomRepositry.save(newRoom);
     return newRoom;

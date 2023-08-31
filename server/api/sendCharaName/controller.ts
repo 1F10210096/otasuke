@@ -1,5 +1,4 @@
 import { charaNameUsecase } from '$/usecase/msgCustomUsecase';
-import { msgUsecase } from '$/usecase/msgUsecase';
 import { defineController } from './$relay';
 
 export default defineController(() => ({

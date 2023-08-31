@@ -5,7 +5,7 @@ import type { Room } from '@prisma/client';
 const toRoomModel = (prismaRoom: Room): RoomModel => ({
   roomId: prismaRoom.roomId,
   created: prismaRoom.createdAt.getTime(),
-  charaName:prismaRoom.charaName
+  charaName: prismaRoom.charaName,
 });
 
 export const roomRepositry = {
@@ -16,7 +16,7 @@ export const roomRepositry = {
       create: {
         roomId: room.roomId,
         createdAt: new Date(room.created),
-        charaName:room.charaName
+        charaName: room.charaName,
       },
     });
   },

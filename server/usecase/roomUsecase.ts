@@ -6,7 +6,7 @@ export const roomUsecase = {
     const newRoom: RoomModel = {
       roomId: randomUUID(),
       created: Date.now(),
-      charaName:""
+      charaName: '',
     };
     await roomRepositry.save(newRoom);
     return newRoom;

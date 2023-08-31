@@ -25,7 +25,7 @@ export type MessageModel = {
 export type RoomModel = {
   roomId: string;
   created: number;
-  charaName:string;
+  charaName: string;
 };
 
 export type MessageCustomModel = {

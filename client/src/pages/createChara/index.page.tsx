@@ -8,12 +8,11 @@ import frame from 'public/5389.png';
 import background from 'public/kawaiisora21-1536x864.png';
 // import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
+import { userAtom } from 'src/atoms/user';
 import { Loading } from 'src/components/Loading/Loading';
 import { apiClient } from 'src/utils/apiClient';
-import { useSendMsg } from 'src/utils/sendMsg';
-import { userAtom } from 'src/atoms/user';
-import styles from './index.module.css';
 import { useCustomName, useSendMsgCustom } from 'src/utils/sendMsgCustom';
+import styles from './index.module.css';
 dotenv.config();
 
 const Home = () => {
@@ -53,7 +52,7 @@ const Home = () => {
   const sendMsgCustom = useSendMsgCustom();
   //メッセージ送信
   const sendMsgsCustom = async () => {
-    const SendMsg = await sendMsgCustom(charaName,msg, roomId);
+    const SendMsg = await sendMsgCustom(charaName, msg, roomId);
     assert(SendMsg, 'コメントなし');
     console.log(SendMsg);
   };
@@ -61,7 +60,6 @@ const Home = () => {
   const onMsg = (msg: string) => {
     setMsg(msg);
   };
-
 
   const sendCustomName = useCustomName();
   //キャラ名送る
@@ -156,7 +154,7 @@ const Home = () => {
         icon={<SendOutlined />}
         style={{ position: 'fixed', top: '15%', right: '82%' }}
         type="primary"
-        onClick={() => sendCharaName()}
+        onClick={() => sentCharaName()}
       />
 
       <AutoComplete
@@ -185,4 +183,3 @@ export default Home;
 function sendCustomName() {
   throw new Error('Function not implemented.');
 }
-
