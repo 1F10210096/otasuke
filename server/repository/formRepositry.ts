@@ -1,12 +1,11 @@
-import type { RoomModel } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
-import type { Room, SendForm } from '@prisma/client';
+import type { SendForm } from '@prisma/client';
 
 const toRoomModel = (prismaRoom: SendForm): SendForm => ({
   id: prismaRoom.id,
-  senderName:prismaRoom.senderName,
-  content:prismaRoom.content,
-  sent_at: prismaRoom.sent_at.getTime(),
+  senderName: prismaRoom.senderName,
+  content: prismaRoom.content,
+  sent_at: prismaRoom.sent_at,
 });
 
 export const formRepositry = {
@@ -16,9 +15,9 @@ export const formRepositry = {
       update: {},
       create: {
         id: form.id,
-        senderName:form.senderName,
+        senderName: form.senderName,
         sent_at: new Date(form.sent_at),
-        content: form.content
+        content: form.content,
       },
     });
   },

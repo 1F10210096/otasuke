@@ -2,8 +2,8 @@ import { formRepositry } from '$/repository/formRepositry';
 import type { SendForm } from '@prisma/client';
 import { randomUUID } from 'crypto';
 
-export const fromCreate = {
-  create: async (msg: string,name:string) => {
+export const formUsecase = {
+  create: async (msg: string, name: string) => {
     const newForm: SendForm = {
       id: randomUUID(),
       senderName: name,
