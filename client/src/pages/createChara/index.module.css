@@ -94,3 +94,26 @@
   border-bottom: solid 10px transparent;
   border-left: solid 15px #397eb5; /*右の折り返し部分*/
 }
+
+.box54{
+  margin: 2em auto;
+  padding:2em;/*内側余白*/
+  position: relative;
+  padding:1.5em !important;
+  z-index: 0;
+  background-color:#d6e0ea;/*背景色*/
+  }
+  
+  .box54:before{
+  position: absolute;
+  border: 2px dashed #fff;/*破線の太さ・色*/
+  content: '';
+  display: block;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin:5px;
+  z-index: -1;
+  border-radius:3px;
+  }

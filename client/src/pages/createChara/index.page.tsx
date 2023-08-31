@@ -116,7 +116,7 @@ const Home = () => {
           alignItems: 'flex-end',
         }}
       >
-        <div className={styles.box14}>
+        <div className={styles.box54}>
           <div
             style={{
               display: 'flex',

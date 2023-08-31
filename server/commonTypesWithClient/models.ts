@@ -35,3 +35,10 @@ export type MessageCustomModel = {
   content: string;
   sent_at: number;
 };
+
+export type SendForm = {
+  id: string;
+  senderName: string;
+  content: string;
+  sent_at: number;
+};
