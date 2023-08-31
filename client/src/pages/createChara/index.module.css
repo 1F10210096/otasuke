@@ -35,49 +35,62 @@
   margin: 0;
   padding: 0;
 }
-.ribbon3 {
+.ribbon9 {
   display: inline-block;
   position: relative;
-  height: 60px;
-  line-height: 60px;
+  height: 45px;
   text-align: center;
-  padding: 7px 0;
-  font-size: 18px;
-  background: #acd879;
-  color: #FFF;
   box-sizing: border-box;
 }
-
-.ribbon3 h3 {
-  margin: 0;
-  padding: 0 30px;
-  border-top: dashed 2px rgba(255, 255, 255, 0.5);
-  border-bottom: dashed 2px rgba(255, 255, 255, 0.5);
-  line-height: 42px;
+.ribbon9:before {
+  /*左側のリボン端*/
+  content: '';
+  position: absolute;
+  width: 10px;
+  bottom: -10px;
+  left: -35px;
+  z-index: -2;
+  border: 20px solid #56adf3;
+  border-left-color: transparent; /*山形に切り抜き*/
 }
 
-.ribbon3:before, .ribbon3:after {
+.ribbon9:after {
+  /*右側のリボン端*/
+  content: '';
+  position: absolute;
+  width: 10px;
+  bottom: -10px;
+  right: -35px;
+  z-index: -2;
+  border: 20px solid #56adf3;
+  border-right-color: transparent; /*山形に切り抜き*/
+}
+
+.ribbon9 h3 {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0 20px;
+  line-height: 45px;
+  font-size: 18px;
+  color: #fff;
+  background: #2196f3; /*真ん中の背景色*/
+}
+.ribbon9 h3:before {
   position: absolute;
   content: '';
-  width: 0px;
-  height: 0px;
-  z-index: 1;
-}
-
-.ribbon3:before {
-  /*左の山形*/
-  top: 0;
+  top: 100%;
   left: 0;
-  border-width: 30px 0px 30px 15px;
-  border-color: transparent transparent transparent #fff;
-  border-style: solid;
+  border: none;
+  border-bottom: solid 10px transparent;
+  border-right: solid 15px #397eb5; /*左の折り返し部分*/
 }
-
-.ribbon3:after {
-  /*右の山形*/
-  top: 0;
+.ribbon9 h3:after {
+  position: absolute;
+  content: '';
+  top: 100%;
   right: 0;
-  border-width: 30px 15px 30px 0px;
-  border-color: transparent #fff transparent transparent;
-  border-style: solid;
+  border: none;
+  border-bottom: solid 10px transparent;
+  border-left: solid 15px #397eb5; /*右の折り返し部分*/
 }

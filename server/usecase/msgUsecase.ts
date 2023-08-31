@@ -44,8 +44,6 @@ export const msgUsecase = async (msg: string, roomId: string): Promise<MessageMo
   return msgAsse;
 };
 
-
-
 export const msgUsecaseCreate = {
   create: async (msg: string, senderId: number) => {
     const newMsg: MessageModel = {

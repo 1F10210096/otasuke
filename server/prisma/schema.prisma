@@ -17,6 +17,7 @@ model Task {
 model Room {
   roomId    String   @id
   createdAt DateTime
+  charaName String
 }
 
 model SendMsg {
@@ -26,3 +27,13 @@ model SendMsg {
   content   String
   sent_at   DateTime
 }
+
+
+model SendCustomMsg {
+  id     String @id
+  roomId String
+  sender_id Int
+  content   String
+  sent_at   DateTime
+}
+

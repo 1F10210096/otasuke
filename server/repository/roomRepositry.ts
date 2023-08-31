@@ -5,9 +5,10 @@ import type { Room } from '@prisma/client';
 const toRoomModel = (prismaRoom: Room): RoomModel => ({
   roomId: prismaRoom.roomId,
   created: prismaRoom.createdAt.getTime(),
+  charaName: prismaRoom.charaName,
 });
 
-export const roomRepository = {
+export const roomRepositry = {
   save: async (room: RoomModel) => {
     await prismaClient.room.upsert({
       where: { roomId: room.roomId },
@@ -15,6 +16,7 @@ export const roomRepository = {
       create: {
         roomId: room.roomId,
         createdAt: new Date(room.created),
+        charaName: room.charaName,
       },
     });
   },

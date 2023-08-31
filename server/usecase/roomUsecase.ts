@@ -1,24 +1,25 @@
 import type { RoomModel } from '$/commonTypesWithClient/models';
-import { roomRepository } from '$/repository/roomRepositry';
+import { roomRepositry } from '$/repository/roomRepositry';
 import { randomUUID } from 'crypto';
 export const roomUsecase = {
   create: async () => {
     const newRoom: RoomModel = {
       roomId: randomUUID(),
       created: Date.now(),
+      charaName: '',
     };
-    await roomRepository.save(newRoom);
+    await roomRepositry.save(newRoom);
     return newRoom;
   },
   room: async (roomId: string): Promise<RoomModel> => {
     console.log(roomId);
-    const room = await roomRepository.findRoom(roomId);
+    const room = await roomRepositry.findRoom(roomId);
     console.log(room);
     if (room === undefined) {
       const room = await roomUsecase.create();
       return room;
     } else {
-      await roomRepository.save(room);
+      await roomRepositry.save(room);
       return room;
     }
   },

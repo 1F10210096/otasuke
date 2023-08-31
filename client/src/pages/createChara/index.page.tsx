@@ -1,24 +1,24 @@
 import { SendOutlined } from '@ant-design/icons';
 import { AutoComplete, Button } from 'antd';
 import assert from 'assert';
-import type { MessageModel } from 'commonTypesWithClient/models';
+import type { MessageCustomModel, MessageModel } from 'commonTypesWithClient/models';
 import dotenv from 'dotenv';
 import { useAtom } from 'jotai';
 import frame from 'public/5389.png';
 import background from 'public/kawaiisora21-1536x864.png';
 // import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
+import { userAtom } from 'src/atoms/user';
 import { Loading } from 'src/components/Loading/Loading';
 import { apiClient } from 'src/utils/apiClient';
-import { useSendMsg } from 'src/utils/sendMsg';
-import { userAtom } from 'src/atoms/user';
+import { useCustomName, useSendMsgCustom } from 'src/utils/sendMsgCustom';
 import styles from './index.module.css';
-import { useSendMsgCustom } from 'src/utils/sendMsgCustom';
 dotenv.config();
 
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [msg, setMsg] = useState('');
+  const [charaName, setCharaName] = useState('');
   const [roomId, setRoomId] = useState('');
   const [myId, setmyId] = useState<string>('');
   const [msgAsse, setMsgAsse] = useState<MessageModel[]>([]);
@@ -31,13 +31,13 @@ const Home = () => {
   };
 
   const lookMsg = async () => {
-    const msg = await apiClient.lookMsg.$post();
+    const msg = await apiClient.lookCustomMsg.$post();
     setMsgAsse(msg.reverse());
     console.log(msg);
     voice(msgAsse);
   };
 
-  const voice = (messages: MessageModel[]) => {
+  const voice = (messages: MessageCustomModel[]) => {
     const sortedMessages = messages.sort((a, b) => b.sent_at - a.sent_at);
     const latestMessage = sortedMessages.find((message) => message.sender_Id === 2);
 
@@ -52,13 +52,25 @@ const Home = () => {
   const sendMsgCustom = useSendMsgCustom();
   //メッセージ送信
   const sendMsgsCustom = async () => {
-    const SendMsg = await sendMsgCustom(msg, roomId);
+    const SendMsg = await sendMsgCustom(charaName, msg, roomId);
     assert(SendMsg, 'コメントなし');
     console.log(SendMsg);
   };
 
   const onMsg = (msg: string) => {
     setMsg(msg);
+  };
+
+  const sendCustomName = useCustomName();
+  //キャラ名送る
+  const sentCharaName = async () => {
+    const SendCharaName = await sendCustomName(charaName);
+    assert(SendCharaName, 'コメントなし');
+    console.log(SendCharaName);
+  };
+
+  const onCharaName = (name: string) => {
+    setCharaName(name);
   };
 
   // useEffect(() => {
@@ -74,7 +86,7 @@ const Home = () => {
         alt="frame"
         style={{ position: 'fixed', width: '100%', height: 'auto' }}
       />
-      <div className={styles.ribbon3}>
+      <div className={styles.ribbon9}>
         <h3>Original Chara</h3>
       </div>
       <div style={{ position: 'relative' }}>
@@ -132,6 +144,19 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <AutoComplete
+        style={{ width: '10%', height: '80%', position: 'fixed', top: '15%', right: '82%' }}
+        onSearch={onCharaName}
+        placeholder="キャラ名を入力してね"
+      />
+      <Button
+        icon={<SendOutlined />}
+        style={{ position: 'fixed', top: '15%', right: '82%' }}
+        type="primary"
+        onClick={() => sentCharaName()}
+      />
+
       <AutoComplete
         style={{ width: '40%', height: '80%', position: 'fixed', top: '95%', right: '30%' }}
         onSearch={onMsg}
@@ -155,3 +180,6 @@ const Home = () => {
 };
 
 export default Home;
+function sendCustomName() {
+  throw new Error('Function not implemented.');
+}
