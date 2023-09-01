@@ -40,5 +40,6 @@ model SendForm {
   id         String   @id
   senderName String
   content    String
-  sent_at    DateTime
+  Email      String
+  Age        Int
 }

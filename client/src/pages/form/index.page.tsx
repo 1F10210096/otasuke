@@ -1,5 +1,7 @@
 import { Button, Form, Input, InputNumber } from 'antd';
 import React from 'react';
+import { useForm } from 'src/utils/form';
+import { assert } from 'vitest';
 
 const layout = {
   labelCol: { span: 8 },
@@ -19,8 +21,15 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const sendForm = useForm();
+
 const onFinish = (values: any) => {
-  console.log(values);
+  // Send the form values to your sendForm function
+  const { name, email, age, comment } = values.user; // Destructure values
+  const SendMsg = sendForm(comment, name, age, email); // Assuming roomId is defined elsewhere
+  assert(SendMsg, 'コメントなし');
+  console.log(SendMsg);
 };
 
 const App: React.FC = () => (
@@ -40,10 +49,7 @@ const App: React.FC = () => (
     <Form.Item name={['user', 'age']} label="Age" rules={[{ type: 'number', min: 0, max: 99 }]}>
       <InputNumber />
     </Form.Item>
-    <Form.Item name={['user', 'website']} label="Website">
-      <Input />
-    </Form.Item>
-    <Form.Item name={['user', 'introduction']} label="Introduction">
+    <Form.Item name={['user', 'comment']} label="comment">
       <Input.TextArea />
     </Form.Item>
     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

@@ -40,5 +40,6 @@ export type SendForm = {
   id: string;
   senderName: string;
   content: string;
-  sent_at: number;
+  Email:string;
+  Age:number;
 };
