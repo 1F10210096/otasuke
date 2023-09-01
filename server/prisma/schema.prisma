@@ -21,19 +21,24 @@ model Room {
 }
 
 model SendMsg {
-  id     String @id
-  roomId String
+  id        String   @id
+  roomId    String
   sender_id Int
   content   String
   sent_at   DateTime
 }
-
 
 model SendCustomMsg {
-  id     String @id
-  roomId String
+  id        String   @id
+  roomId    String
   sender_id Int
   content   String
   sent_at   DateTime
 }
 
+model SendForm {
+  id         String   @id
+  senderName String
+  content    String
+  sent_at    DateTime
+}
