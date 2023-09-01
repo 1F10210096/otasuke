@@ -4,8 +4,9 @@ import type { SendForm } from '@prisma/client';
 const toRoomModel = (prismaRoom: SendForm): SendForm => ({
   id: prismaRoom.id,
   senderName: prismaRoom.senderName,
+  Email: prismaRoom.Email,
+  Age: prismaRoom.Age,
   content: prismaRoom.content,
-  sent_at: prismaRoom.sent_at,
 });
 
 export const formRepositry = {
@@ -16,8 +17,9 @@ export const formRepositry = {
       create: {
         id: form.id,
         senderName: form.senderName,
-        sent_at: new Date(form.sent_at),
         content: form.content,
+        Age: form.Age,
+        Email: form.Email,  
       },
     });
   },

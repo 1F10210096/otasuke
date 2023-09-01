@@ -117,3 +117,34 @@
   z-index: -1;
   border-radius:3px;
   }
+
+  .ttl_balloon2 {
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border: 3px solid #4c9ac0;
+    box-shadow: 3px 3px 0 0 #4c9ac0;
+    position: relative;
+  }
+  .ttl_balloon2::before, .ttl_balloon2::after {
+    content: '';
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    position: absolute;
+    left: 30px;
+  }
+  .ttl_balloon2::before {
+    border-color: transparent;
+    border-top-color: #4c9ac0;
+    border-right-color: #4c9ac0;
+    border-width: 10px;
+    top: 100%;
+    left: 26px;
+  }
+  .ttl_balloon2::after {
+    border-color: transparent;
+    border-top-color: #fff;
+    border-right-color: #fff;
+    border-width: 6.5px;
+    top: 99%;
+  }
