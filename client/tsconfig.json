@@ -19,6 +19,6 @@
     "types": ["vitest/importMeta"],
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", ".eslintrc.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", ".eslintrc.js","src/pages/**/*.js",],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,83 @@
+.title {
+  font-size: 80px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tasks {
+  width: 300px;
+  padding: 0;
+  margin: 20px auto 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.tasks > li {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.deleteBtn {
+  float: right;
+}
+
+.box14 {
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  background: #d6ebff;
+  box-shadow: 0px 0px 0px 10px #d6ebff;
+  border: dashed 2px white;
+  position: relative;
+  z-index: 1;
+  right: 20%;
+}
+.box14 p {
+  margin: 0;
+  padding: 0;
+}
+.ribbon3 {
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  padding: 7px 0;
+  font-size: 18px;
+  background: #acd879;
+  color: #FFF;
+  box-sizing: border-box;
+}
+
+.ribbon3 h3 {
+  margin: 0;
+  padding: 0 30px;
+  border-top: dashed 2px rgba(255, 255, 255, 0.5);
+  border-bottom: dashed 2px rgba(255, 255, 255, 0.5);
+  line-height: 42px;
+}
+
+.ribbon3:before, .ribbon3:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.ribbon3:before {
+  /*左の山形*/
+  top: 0;
+  left: 0;
+  border-width: 30px 0px 30px 15px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+}
+
+.ribbon3:after {
+  /*右の山形*/
+  top: 0;
+  right: 0;
+  border-width: 30px 15px 30px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
