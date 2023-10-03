@@ -26,8 +26,14 @@ class UserProfile extends Component<object, UserProfileState> {
 
     return (
       <div className={styles['fullScreenBackground']}>
+         <div className={styles.gNav}>
+      <div className={styles.navItem}>
+        <span>キャラクター一覧</span>
+      </div>
+    </div>
       <div className={styles['figure-container']}>
-      <><figure
+      <div className={styles.row}>
+      <figure
         className={`${styles.snip1344} ${isHovered ? styles.hover : ''}`}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
@@ -86,6 +92,8 @@ class UserProfile extends Component<object, UserProfileState> {
             </div>
           </figcaption>
         </figure>
+        </div>
+        <div className={styles.row}>
         <figure
           className={`${styles.snip1344} ${isHovered ? styles.hover : ''}`}
           onMouseEnter={this.handleMouseEnter}
@@ -147,7 +155,7 @@ class UserProfile extends Component<object, UserProfileState> {
             </div>
           </figcaption>
         </figure>
-        </>
+        </div>
         
         </div>
         </div>

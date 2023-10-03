@@ -5,7 +5,7 @@
   position: relative;
   overflow: hidden;
   margin: 10px;
-  min-width: 230px;
+  min-width: 400px;
   max-width: 315px;
   width: 100%;
   color: #ffffff;
@@ -81,12 +81,27 @@
 
 .figure-container {
   position: relative;
-  margin-top: 15%;
+  margin-top: 5%;
+  margin-left: 10%;
   display: flex;
-  justify-content: flex-start; /* この行を追加 */
-  width: calc(100% ); /* この行を修正 (左右の合計パディングを減算) */
-  padding: 1% 10%; /* この行を追加 (左右のパディングを20pxに設定) */
+  flex-direction: column; /* 縦方向にコンテナ（行）を並べる */
+  width: calc(100%);
+  padding: 1% 10%;
+  overflow-y: auto;
 }
+
+.figure-container figure {
+  margin-right: 80px;
+}
+
+.row {
+  display: flex; /* この行の要素を横並びにする */
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+
 
 .fullScreenBackground {
   background: #ede9de;
@@ -96,4 +111,22 @@
   bottom: 0;
   left: 0;
   z-index: -1; 
+  height: 100%;
+  overflow-y: auto;
+}
+
+.gNav {
+  display: table;
+  width: 100%;
+  font-weight: bold;
+  background: -webkit-linear-gradient(210deg, #f96b18, #f6cbf4);
+  background: linear-gradient(210deg, #f25f29, #f47269);
+}
+
+.navItem span {
+  display: block;
+  color: #fff; /* 文字色 */
+  padding: 20px 0;
+  text-decoration: none;
+  margin-left: 3%;
 }
