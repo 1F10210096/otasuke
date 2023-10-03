@@ -78,3 +78,22 @@
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
 }
+
+.figure-container {
+  position: relative;
+  margin-top: 15%;
+  display: flex;
+  justify-content: flex-start; /* この行を追加 */
+  width: calc(100% ); /* この行を修正 (左右の合計パディングを減算) */
+  padding: 1% 10%; /* この行を追加 (左右のパディングを20pxに設定) */
+}
+
+.fullScreenBackground {
+  background: #ede9de;
+  position: fixed; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; 
+}

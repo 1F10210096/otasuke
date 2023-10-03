@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react';
-import React, { Component } from 'react';
-import './index.module.css';
+import { Component } from 'react';
+import styles from './index.module.css';
 interface UserProfileState {
   isHovered: boolean;
 }
@@ -25,21 +25,21 @@ class UserProfile extends Component<object, UserProfileState> {
     const { isHovered } = this.state;
 
     return (
-      <figure
-        className={`snip1344 ${isHovered ? 'hover' : ''}`}
+      <div className={styles['fullScreenBackground']}>
+      <div className={styles['figure-container']}>
+      <><figure
+        className={`${styles.snip1344} ${isHovered ? styles.hover : ''}`}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
           alt="profile-sample1"
-          className="background"
-        />
+          className={styles.background} />
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
           alt="profile-sample1"
-          className="profile"
-        />
+          className={styles.profile} />
         <figcaption>
           <h3>
             Ursula Gurnmeister<span>Engineer</span>
@@ -56,7 +56,101 @@ class UserProfile extends Component<object, UserProfileState> {
             </a>
           </div>
         </figcaption>
-      </figure>
+      </figure><figure
+        className={`${styles.snip1344} ${isHovered ? styles.hover : ''}`}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
+            alt="profile-sample1"
+            className={styles.background} />
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
+            alt="profile-sample1"
+            className={styles.profile} />
+          <figcaption>
+            <h3>
+              Ursula Gurnmeister<span>Engineer</span>
+            </h3>
+            <div className="icons">
+              <a href="#">
+                <i className="ion-social-reddit-outline" />
+              </a>
+              <a href="#">
+                <i className="ion-social-twitter-outline" />
+              </a>
+              <a href="#">
+                <i className="ion-social-vimeo-outline" />
+              </a>
+            </div>
+          </figcaption>
+        </figure>
+        <figure
+          className={`${styles.snip1344} ${isHovered ? styles.hover : ''}`}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+        >
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
+            alt="profile-sample1"
+            className={styles.background} />
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
+            alt="profile-sample1"
+            className={styles.profile} />
+          <figcaption>
+            <h3>
+              Ursula Gurnmeister<span>Engineer</span>
+            </h3>
+            <div className="icons">
+              <a href="#">
+                <i className="ion-social-reddit-outline" />
+              </a>
+              <a href="#">
+                <i className="ion-social-twitter-outline" />
+              </a>
+              <a href="#">
+                <i className="ion-social-vimeo-outline" />
+              </a>
+            </div>
+          </figcaption>
+          
+        </figure>
+        <figure
+          className={`${styles.snip1344} ${isHovered ? styles.hover : ''}`}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+        >
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
+            alt="profile-sample1"
+            className={styles.background} />
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample1.jpg"
+            alt="profile-sample1"
+            className={styles.profile} />
+          <figcaption>
+            <h3>
+              Ursula Gurnmeister<span>Engineer</span>
+            </h3>
+            <div className="icons">
+              <a href="#">
+                <i className="ion-social-reddit-outline" />
+              </a>
+              <a href="#">
+                <i className="ion-social-twitter-outline" />
+              </a>
+              <a href="#">
+                <i className="ion-social-vimeo-outline" />
+              </a>
+            </div>
+          </figcaption>
+        </figure>
+        </>
+        
+        </div>
+        </div>
     );
   }
 }
