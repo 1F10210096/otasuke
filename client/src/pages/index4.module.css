@@ -1,0 +1,17 @@
+.g-nav {
+  display: table;
+  width: 100%;
+  font-weight: bold;
+  background: -webkit-linear-gradient(210deg, #f96b18, #f6cbf4);
+  background: linear-gradient(210deg, #f25f29, #f47269);
+}.nav-item {
+  display: table-cell;
+  list-style-type: none;
+  text-align: center;
+}
+.nav-item a {
+  display: block;
+  color: #fff;/* 文字色 */
+  padding: 10px 0;
+  text-decoration: none;
+}

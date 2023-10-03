@@ -9,13 +9,18 @@ import background2 from 'public/beach01.png';
 import background from 'public/kawaiisora21-1536x864.png';
 import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
+import { useRouter } from 'next/router'; // 追加
 import { Loading } from 'src/components/Loading/Loading';
 import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
+import TitleAnimation from './index';
+import styles2 from'./index4.module.css'; 
+import styles1 from'./index3.module.css'; 
+
+
 dotenv.config();
-//a
 
 const Home = () => {
   const [user] = useAtom(userAtom);
@@ -23,146 +28,73 @@ const Home = () => {
   const [roomId, setRoomId] = useState('');
   const [myId, setmyId] = useState<string>('');
   const [msgAsse, setMsgAsse] = useState<MessageModel[]>([]);
+  const categories = [
+    { name: 'サイト紹介', url: 'カテゴリー1のURL' },
+    { name: 'キャラクタ一覧', url: 'カテゴリー2のURL' },
+    { name: 'サイトの特徴', url: 'カテゴリー3のURL' },
+    { name: '問い合わせ', url: 'カテゴリー5のURL' },
+  ];
 
-  const createRoom = async () => {
-    const room = await apiClient.room.$post({ body: { roomId } });
-    console.log(roomId);
-    setRoomId(room.roomId);
-    console.log(roomId);
-  };
+  const router = useRouter(); // 追加
 
-  const lookMsg = async () => {
-    const msg = await apiClient.lookMsg.$post();
-    setMsgAsse(msg.reverse());
-    console.log(msg);
-    voice(msgAsse);
-  };
+  const redirectToBaymax = () => {
+    router.push('/title'); // /baymax へリダイレクト
+  }
 
-  const voice = (messages: MessageModel[]) => {
-    const sortedMessages = messages.sort((a, b) => b.sent_at - a.sent_at);
-    const latestMessage = sortedMessages.find((message) => message.sender_Id === 2);
-
-    if (latestMessage) {
-      const uttr = new SpeechSynthesisUtterance(latestMessage.content);
-      window.speechSynthesis.speak(uttr);
-    } else {
-      console.log('最新の sender_Id が 2 のメッセージが見つかりませんでした。');
-    }
-  };
-
-  const sendMsg = useSendMsg();
-  //メッセージ送信
-  const sendMsgs = async () => {
-    const SendMsg = await sendMsg(msg, roomId);
-    assert(SendMsg, 'コメントなし');
-    console.log(SendMsg);
-  };
-
-  const onMsg = (msg: string) => {
-    setMsg(msg);
-  };
-
-  // useEffect(() => {
-  //   createRoom();
-  // }, [createRoom]);
-
-  if (!user) return <Loading visible />;
+  if (!user) return (
+    <div aria-busy="true" aria-label="Loading" role="progressbar" className={styles.container}>
+      <div className={styles.swing}>
+        <div className={`${styles["swing-l"]}`} />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div className={styles["swing-r"]} />
+      </div>
+      <div className={styles.shadow}>
+        <div className={styles["shadow-l"]} />
+        <div />
+        <div />
+        <div />
+        <div className={styles["shadow-r"]} />
+      </div>
+    </div>
+);
 
   return (
     <>
-      <img
-        src={background.src}
-        alt="frame"
-        style={{ position: 'fixed', width: '100%', height: 'auto' }}
-      />
-      <div className={styles.ribbon3}>
-        <h3>Baymax</h3>
+    
+    <div className={styles.fullScreenBackground} />
+    <ul className={styles2['g-nav']}>
+      {categories.map((category, index) => (
+        <li className={styles2['nav-item']} key={index}>
+          <a href={category.url}>{category.name}</a>
+        </li>
+      ))}
+    </ul>
+      <TitleAnimation />
+      <div aria-busy="true" aria-label="Loading" role="progressbar" className={styles.container}>
+      <div className={styles.swing}>
+        <div className={`${styles["swing-l"]}`} />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div className={styles["swing-r"]} />
       </div>
-      <div style={{ position: 'relative' }}>
-        <img
-          src={frame.src}
-          alt="frame"
-          style={{
-            position: 'fixed',
-            marginLeft: '17%',
-            width: '50%',
-            height: 'auto',
-          }}
-        />
-        <img
-          src={background2.src}
-          alt="frame"
-          style={{
-            position: 'fixed',
-            marginTop: '4%',
-            marginLeft: '19%',
-            width: '46%',
-            height: '69%',
-          }}
-        />
-
-        <div style={{ position: 'fixed', width: '20%', height: '14%', overflow: 'hidden' }}>
-          <img
-            src={beimax.src}
-            alt="Beimax"
-            style={{ position: 'fixed', left: '23%', top: '21%', width: '40%', height: 'auto' }}
-          />
-        </div>
+      <div className={styles.shadow}>
+        <div className={styles["shadow-l"]} />
+        <div />
+        <div />
+        <div />
+        <div className={styles["shadow-r"]} />
       </div>
-      <div
-        style={{
-          display: 'flex',
-          marginLeft: '75%',
-          marginBottom: '100%',
-          alignItems: 'flex-end',
-        }}
-      >
-        <div className={styles.box14}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              padding: '10px',
-            }}
-          >
-            {msgAsse.map((message) => (
-              <div
-                key={message.id}
-                style={{
-                  backgroundColor: message.sender_Id === 1 ? '#ffffff' : '#ffffff',
-                  maxWidth: '80%',
-                  borderRadius: '8px',
-                  padding: '8px',
-                  marginBottom: '10px',
-                  alignSelf: message.sender_Id === 1 ? 'flex-start' : 'flex-end',
-                  zIndex: 1,
-                }}
-              >
-                {message.content}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <AutoComplete
-        style={{ width: '40%', height: '80%', position: 'fixed', top: '95%', right: '30%' }}
-        onSearch={onMsg}
-        placeholder="input her"
-      />
-      <Button
-        icon={<SendOutlined />}
-        style={{ position: 'fixed', top: '95%', right: '30%' }}
-        type="primary"
-        onClick={() => sendMsgs()}
-      />
-      <Button
-        style={{ position: 'fixed', top: '88%', right: '8%', width: '20%', height: '10%' }}
-        type="primary"
-        onClick={() => lookMsg()}
-      >
-        check
-      </Button>
+    </div>
+    <div className={styles1.myBoxSizing}>
+      <a href="#" onClick={redirectToBaymax} className={`${styles1.btn} ${styles1['btn-border-shadow']} ${styles1['btn-border-shadow--color2']}`}>
+        始める
+      </a>
+    </div>
     </>
   );
 };
