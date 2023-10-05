@@ -22,6 +22,8 @@
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "^0.38.0",
+    "@types/jquery": "^3.5.20",
+    "@types/slick-carousel": "^1.6.38",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.46.0",
@@ -46,6 +48,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@ionic/react": "^7.4.2",
     "antd": "^5.8.4",
     "bourbon": "^7.3.0",
     "dotenv": "^16.3.1",

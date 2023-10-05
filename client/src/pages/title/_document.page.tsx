@@ -10,6 +10,15 @@ function Document() {
         <meta name="description" content="next-frourio-starter" />
         <link rel="icon" href="favicon.png" />
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-2/css/6-1-2.css"
+        />
+        {/* 他の<head>内の要素 */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -26,6 +35,11 @@ function Document() {
       <body>
         <Main />
         <NextScript />
+        <Main />
+        <NextScript />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" />
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" />
+        <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-2/js/6-1-2.js" />
       </body>
     </Html>
   );
