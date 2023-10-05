@@ -9,13 +9,37 @@ import background2 from 'public/beach01.png';
 import background from 'public/kawaiisora21-1536x864.png';
 import beimax from 'public/pngwing.com.png';
 import { useState } from 'react';
+import { userAtom } from 'src/atoms/user';
 import { Loading } from 'src/components/Loading/Loading';
 import { apiClient } from 'src/utils/apiClient';
 import { useSendMsg } from 'src/utils/sendMsg';
 import styles from './index.module.css';
-import { userAtom } from 'src/atoms/user';
 dotenv.config();
 //a
+
+async function generateVoice(userText: string) {
+  console.log('generateVoice');
+  console.log(process.env.NEXT_PUBLIC_VOICE_KEY);
+  try {
+    const response = await fetch(
+      `https://deprecatedapis.tts.quest/v2/voicevox/audio/?text=${userText}&key=${process.env.NEXT_PUBLIC_VOICE_KEY}&speaker=2`
+    );
+
+    console.log('fetch');
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    audio.play();
+    audio.addEventListener('ended', () => {
+      window.URL.revokeObjectURL(url);
+    });
+    
+
+    // audioタグのソースを設定
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 const Home = () => {
   const [user] = useAtom(userAtom);
@@ -34,22 +58,23 @@ const Home = () => {
   const lookMsg = async () => {
     const msg = await apiClient.lookMsg.$post();
     setMsgAsse(msg.reverse());
-    console.log(msg);
+    console.log('dawdadd');
     voice(msgAsse);
   };
 
   const voice = (messages: MessageModel[]) => {
     const sortedMessages = messages.sort((a, b) => b.sent_at - a.sent_at);
-    const latestMessage = sortedMessages.find((message) => message.sender_Id === 2);
-
-    if (latestMessage) {
-      const uttr = new SpeechSynthesisUtterance(latestMessage.content);
-      window.speechSynthesis.speak(uttr);
-    } else {
-      console.log('最新の sender_Id が 2 のメッセージが見つかりませんでした。');
-    }
+    const latestMessage = sortedMessages[0];
+    console.log(latestMessage);
+    if (latestMessage === undefined || latestMessage === null) {
+      console.log('No latest message found');
+      return;
+  }
+    const messageContent = latestMessage.content;
+    
+    generateVoice(messageContent);
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   };
-
   const sendMsg = useSendMsg();
   //メッセージ送信
   const sendMsgs = async () => {
