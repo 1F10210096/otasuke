@@ -1,0 +1,35 @@
+.fullScreenBackground {
+  background: #9eb912;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+.container {
+  left: 50%;
+  margin: auto -50px;
+  position: absolute;
+  top: 50%;
+  background: #ede9de;
+}
+
+.title {
+  text-align: center;
+}
+
+.usageSection,
+.feedbackSection {
+  margin: 20px;
+  padding: 10px;
+}
+
+.feedbackInput {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submitButton {
+  margin-top: 10px;
+}
