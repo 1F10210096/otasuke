@@ -37,9 +37,16 @@ model SendCustomMsg {
 }
 
 model SendForm {
-  id         String   @id
+  id         String @id
   senderName String
   content    String
   Email      String
   Age        Int
+}
+
+model Information {
+  id      String @id @default(uuid())
+  netName String
+  email   String
+  problem String
 }

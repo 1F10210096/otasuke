@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
+import { apiClient } from 'src/utils/apiClient';
 import styles from './index.module.css';
 
 const Home = () => {
   const [feedback, setFeedback] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
 
   const handleFeedbackChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFeedback(e.target.value);
   };
 
-  const submitFeedback = () => {
-    console.log(feedback);
-    alert('ご意見ありがとうございます。');
-    setFeedback('');
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
+
+  const headleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const sendFeedback = async () => {
+    const Information = await apiClient.info.$post({ body: { name, email, problem: feedback } });
+  };
+
+  const submitFeedback = () => {
+    console.log(feedback, email, name);
+    sendFeedback();
+  };
+
   return (
     <>
       <div className={styles.fullScreenBackground} />
@@ -26,6 +41,18 @@ const Home = () => {
           </section>
           <section className={styles.feedbackSection}>
             <h2>ご意見欄</h2>
+            <input
+              value={name}
+              onChange={headleNameChange}
+              className={styles.input}
+              placeholder="ニックネーム"
+            />
+            <input
+              value={email}
+              onChange={handleEmailChange}
+              className={styles.input}
+              placeholder="メールアドレス"
+            />
             <textarea
               value={feedback}
               onChange={handleFeedbackChange}
