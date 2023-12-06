@@ -1,7 +1,10 @@
 .title {
-  font-size: 80px;
+  font-size: 100px;
+  
   text-align: center;
   font-weight: bold;
+  background-color:#f25f29 ;	
+  color:white;
 }
 
 .tasks {
@@ -101,7 +104,7 @@
   position: relative;
   padding:1.5em !important;
   z-index: 0;
-  background-color:#d6e0ea;/*背景色*/
+  /*背景色*/
   }
   
   .box54:before{
@@ -117,3 +120,266 @@
   z-index: -1;
   border-radius:3px;
   }
+.body{
+    
+    background-color:#f0bc94 ;
+    
+  }
+
+.STEP1{
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 100px;	/*下に空ける余白*/
+  letter-spacing: 0.1em;	/*文字間隔を広くとる設定*/
+  	/*背景色（古いブラウザ用）*/
+  background: rgba(255,255,255,0.3);	/*255,255,255は白の事で0.3は色が30%出た状態の事。*/
+  text-align: center;		/*文字を中央に*/
+  border-radius: 100px;	/*角丸のサイズ。大きめに設定しておけばOK。*/
+  padding: 0px 20px;		/*上下、左右への余白*/
+  }
+
+.icon {
+    background-color: aqua;
+ 
+  }
+.stepd1{
+    font-size:100px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 200px;
+    margin-left: 400px;
+    margin-right: 400px;
+    
+    background-color: white;
+    color:black;
+    border-radius: 20px;
+   
+  }
+.stepd1_5{
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 100px;
+    margin:50px 100px 100px 100px;
+    background-color: #f08f45;
+    color:white;
+    border-radius: 100px;
+    height: 700px;
+   
+}
+.stepd1_5_5{
+  margin-top: 70px;
+ 
+}
+.stepd2{
+  font-size: 100px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 400px;
+  background-color: white;
+  color:black;
+  border-radius: 20px;
+     
+}
+.stepd2_5{
+        font-size: 40px;
+        text-align: center;
+        font-weight: bold;
+        margin:50px 100px 100px 100px;
+        background-color: #f08f45;
+        color:white;
+        border-radius: 100px;
+        height: 600px;
+       
+}
+.stepd2_5_5{
+  margin-top: 70px;
+ 
+}
+.stepd3{
+  font-size: 100px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 400px;
+  background-color: white;
+  color:black;
+  border-radius: 20px;
+       
+
+}
+.stepd3_5{
+          font-size: 40px;
+          text-align: center;
+          font-weight: bold;
+          margin: 50px 100px 100px 100px;
+          background-color: #f08f45;
+          color:white;
+          border-radius: 100px;
+          height: 600px;
+         
+}
+.stepd3_5_5{
+  margin-top: 70px;
+ 
+}
+.stepd4{
+  font-size: 100px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 400px;
+  
+  background-color: white;
+  color:black;
+  border-radius: 20px;
+         
+}
+
+.stepd4_5{
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+            margin:50px 100px 0px 100px;
+            
+            background-color: #f08f45;
+            color:white;
+            border-radius: 100px;
+            height: 600px;
+           
+}
+.stepd4_5_5{
+  margin-top: 70px;
+ 
+}
+
+.stepd5{
+  font-size: 80px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-left: 200px;
+  margin-right: 200px;
+  background-color: white;
+ 
+  color:black;
+  border-radius: 20px;
+         
+}
+
+.stepd5_5{
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+            margin:50px 100px 0px 100px;
+            
+            background-color: #f08f45;
+            color:white;
+            border-radius: 100px;
+            height: 1000;
+           
+}
+.kyara{
+  color: white;
+  margin-top: 50px;
+  top:50px;
+}
+.kyara2{
+  color: white;
+  margin-top: 50px;
+  
+}
+.kyara3{
+  color: white;
+  margin-top: 50px;
+  
+}
+
+.kyara4{
+  color: white;
+  margin-top: 50px;
+  
+}
+
+
+.inner {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.fadeInBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+/* ブロックの共通CSS */
+.block {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  padding: 50px 20px;
+}
+/* 下から上に移動しながらフェードイン */
+.fadeInUp {
+  opacity: 0;
+  transform: translateY(100px);
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+/* 上から下に移動しながらフェードイン */
+.fadeInDown {
+  opacity: 0;
+  transform: translateY(-100px);
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+/* 右から左に移動しながらフェードイン */
+.fadeInLeft {
+  opacity: 0;
+  transform: translateX(-100px);
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+/* 左から右に移動しながらフェードイン */
+.fadeInRight {
+  opacity: 0;
+  transform: translateX(100px);
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+/* フェードインアニメーション */
+@keyframes fadeIn {
+  0% {
+  }
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
+
+.stepd0{
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  margin:80px 90px 0px 90px;
+  text-indent: 1em;
+  
+  background-color: #f08f45;
+  color:white;
+  border-radius: 100px;
+  height: 350px;
+  word-break: break-all;
+ 
+}
