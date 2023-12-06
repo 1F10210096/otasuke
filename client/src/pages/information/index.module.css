@@ -70,3 +70,8 @@
   border-color: #007bff;
   outline: none;
 }
+
+
+.errorMessage {
+  color: red;
+}

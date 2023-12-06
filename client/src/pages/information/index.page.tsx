@@ -7,6 +7,10 @@ const Home = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
 
+  const [error,setError] = useState('');
+
+
+
   const handleFeedbackChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFeedback(e.target.value);
   };
@@ -20,6 +24,11 @@ const Home = () => {
   };
 
   const sendFeedback = async () => {
+    if (!isValidEmail(email)) {
+      setError("正しいメールアドレスを入力してください！")
+      return;
+    }
+    setError('');
     const Information = await apiClient.info.$post({ body: { name, email, problem: feedback } });
   };
 
@@ -27,6 +36,11 @@ const Home = () => {
     console.log(feedback, email, name);
     sendFeedback();
   };
+
+  const isValidEmail = (email:string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
 
   return (
     <>
@@ -53,6 +67,7 @@ const Home = () => {
               className={styles.input}
               placeholder="メールアドレス"
             />
+            {error && <div className={styles.errorMessage}>{error}</div>}
             <textarea
               value={feedback}
               onChange={handleFeedbackChange}
