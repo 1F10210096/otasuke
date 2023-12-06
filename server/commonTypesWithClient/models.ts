@@ -40,6 +40,13 @@ export type SendForm = {
   id: string;
   senderName: string;
   content: string;
-  Email:string;
-  Age:number;
+  Email: string;
+  Age: number;
+};
+
+export type Information = {
+  id: string;
+  netName: string;
+  email: string;
+  problem: string;
 };
